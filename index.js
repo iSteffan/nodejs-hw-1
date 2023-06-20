@@ -1,4 +1,4 @@
-const contact = require('./contacts');
+const contact = require('./db/contacts');
 const { program } = require('commander');
 
 program
@@ -27,13 +27,11 @@ async function invokeAction({ action, id, name, email, phone }) {
     case 'add':
       const newContact = await contact.addContact({ name, email, phone });
       return console.table(newContact);
-      // ... name email phone
       break;
 
     case 'remove':
       const deleteContact = await contact.removeContact(id);
       return console.table(deleteContact);
-      // ... id
       break;
 
     default:
@@ -41,4 +39,4 @@ async function invokeAction({ action, id, name, email, phone }) {
   }
 }
 
-// invokeAction(argv);
+invokeAction(argv);
